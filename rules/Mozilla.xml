@@ -1,0 +1,25 @@
+<!-- BOOOO: Firefox.com (which some download links pass through) is in
+     HTTP only... -->
+
+<ruleset name="Mozilla">
+  <target host="mozilla.org" />
+  <target host="*.mozilla.org" />
+  <target host="mozilla.com" />
+  <target host="*.mozilla.com" />
+  <target host="mozillalabs.com" />
+  <target host="www.mozillalabs.com" />
+  <target host="mozillamessaging.com" />
+  <target host="www.mozillamessaging.com" />
+  <target host="planet.mozillamessaging.com" />
+
+  <rule from="^http://mozilla\.org/" to="https://www.mozilla.org/"/>
+  <rule from="^http://(addons|education|ftp|hacks|hg|labs|mxr|planet|quality|www)\.mozilla\.org/" to="https://$1.mozilla.org/"/>
+
+  <rule from="^http://mozilla\.com/" to="https://www.mozilla.com/"/>
+  <rule from="^http://(people|www)\.mozilla\.com/" to="https://$1.mozilla.com/"/>
+
+  <rule from="^http://(www\.)?mozillalabs\.com/" to="https://mozillalabs.com/"/>
+
+  <rule from="^http://mozillamessaging\.com/" to="https://mozillamessaging.com/"/>
+  <rule from="^http://(planet|www)\.mozillamessaging\.com/" to="https://$1.mozillamessaging.com/"/>
+</ruleset>

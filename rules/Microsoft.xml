@@ -1,0 +1,8 @@
+<ruleset name="Microsoft">
+  <target host="*.microsoft.com" />
+  <target host="microsoft.com" />
+
+  <exclusion pattern="^http://www\.microsoft\.com/security/" />
+  <rule from="^http://(www\.)?microsoft\.com/" to="https://www.microsoft.com/"/>
+  <rule from="^http://(office|office2010|store)\.microsoft\.com/" to="https://$1.microsoft.com/"/>
+</ruleset>

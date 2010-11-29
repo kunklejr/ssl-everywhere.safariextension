@@ -1,0 +1,21 @@
+<!-- 
+This directory contains web site rewriting rules from the
+HTTPS Everywhere software, available from
+https://www.eff.org/https-everywhere. These rules are used
+as the basis for SSL Everywhere rules.
+
+The HTTPS Everywhere rules were contributed to the project by 
+users and aim to enable routine secure access to as many 
+different web sites as possible.  They are automatically 
+transformed into SSL Everywhere rules and installed together 
+with the HTTPS Everywhere software.  The presence of these 
+rules does not mean that an HTTPS Everywhere user accessed, 
+or intended to access, any particular web site.
+
+For information about how to create additional HTTPS Everywhere
+rewriting rules to add support for new sites, please see
+https://www.eff.org/https-everywhere/rulesets
+
+New rules will be added to SSL Everywhere shortly after they
+are added to HTTPS Everywhere.
+-->

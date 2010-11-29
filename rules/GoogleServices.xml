@@ -1,0 +1,74 @@
+<!-- XXX: Needs more testing -->
+<ruleset name="GoogleServices" match_rule="http:.*google">
+  <target host="spreadsheets.google.com" />
+  <target host="*.google.com" />
+  <target host="groups.google.de" />
+  <target host="google.com" />
+  <target host="www.gmail.com" />
+  <target host="gmail.com" />
+  <target host="www.googlecode.com" />
+  <target host="googlecode.com" />
+  <target host="www.google.co.*" />
+  <target host="www.google.com.*" />
+  <target host="google.co.*" />
+  <target host="google.com.*" />
+  <target host="news.google.co.*" />
+  <target host="news.google.com.*" />
+  <target host="google.*" />
+  <target host="www.google.*" />
+  <target host="news.google.*" />
+
+  <rule from="^http://spreadsheets\.google\.com/" to="https://spreadsheets.google.com/"/>
+  <rule from="^http://docs\.google\.com/" to="https://docs.google.com/"/>
+  <rule from="^http://groups\.google\.com/" to="https://groups.google.com/"/>
+  <rule from="^http://groups\.google\.de/" to="https://groups.google.de/"/>
+  <rule from="^http://mail\.google\.com/" to="https://mail.google.com/"/>
+  <rule from="^http://(www\.)?gmail\.com/" 
+          to="https://mail.google.com/"/>
+  <rule from="^http://(www\.)?google\.com/reader/" 
+          to="https://www.google.com/reader/"/>
+  <rule from="^http://code\.google\.com/" to="https://code.google.com/"/>
+  <rule from="^http://(www\.)?google\.com/codesearch"
+          to="https://www.google.com/codesearch"/>
+  <rule from="^http://sites\.google\.com/" to="https://sites.google.com/"/>
+
+  <rule from="^http://(www\.)?google((\.com?)?(\.[^/@:][^/@:])?)/calendar"
+          to="https://www.google$2/calendar" />
+
+  <!-- This worked for a while but seems to be unstable
+  <rule from="^http://(www\.)?google((\.com?)?(\.[^/@:][^/@:])?)/products"
+          to="https://www.google$2/products" /> -->
+ 
+  <rule from="^http://(www\.)?google((\.com?)?(\.[^/@:][^/@:])?)/profiles"
+          to="https://www.google$2/profiles" />
+
+  <rule from="^http://news\.google((\.com?)?(\.[^/@:][^/@:])?)/news"
+          to="https://www.google.com/news" />
+
+  <rule from="^http://news\.google((\.com?)?(\.[^/@:][^/@:])?)/"
+          to="https://www.google.com/news" />
+
+  <rule from="^http://www\.googlecode\.com/$"
+          to="https://code.google.com/" />
+  <rule from="^http://([^/:@]*)\.googlecode\.com/$"
+          to="https://code.google.com/p/$1/" />
+  <rule from="^http://([^/:@]*)\.googlecode\.com/(.+)"
+          to="https://$1.googlecode.com/$2" />
+
+  <rule from="^http://trends\.google\.com/"
+          to="https://www.google.com/trends"/>
+  <rule from="^http://(www\.)?google\.com/trends" 
+          to="https://www.google.com/trends"/>
+
+  <rule from="^http://www\.google\.com/cse/intl/([^/:@][^/:@])/images/google_custom_search_watermark\.gif$" to="https://www.google.com/cse/intl/$1/images/google_custom_search_watermark.gif" />
+
+  <rule from="^http://(www\.)?google\.com/finance" 
+          to="https://www.google.com/finance"/>
+  <rule from="^http://(www\.)?google\.co\.uk/finance" 
+          to="https://www.google.co.uk/finance"/>
+  <rule from="^https?://finance\.google\.com/" 
+          to="https://www.google.com/finance/"/>
+  <rule from="^https?://finance\.google\.co\.uk/" 
+          to="https://www.google.co.uk/finance/"/>
+
+</ruleset>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>Near Infinity</string>
+	<key>CFBundleDisplayName</key>
+	<string>SSL Everywhere</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.nearinfinity.ssleverywhere</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Global Page</key>
+		<string>global.html</string>
+	</dict>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>End</key>
+			<array>
+				<string>end.js</string>
+			</array>
+			<key>Start</key>
+			<array>
+				<string>start.js</string>
+			</array>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>Protects your browsing by enabling HTTPS encryption automatically on sites known to support it</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+	<key>Website</key>
+	<string>https://www.nearinfinity.com/home/ssleverywhere.html</string>
+</dict>
+</plist>
