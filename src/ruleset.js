@@ -1,6 +1,6 @@
 function RuleSet(config) {
   this.name = config.name;
-  this.disabled = config.disabled;
+  this.enabled = config.enabled;
   this.matchRule = config.match_rule;
   this.targets = config.targets || [];
   this.exclusions = config.exlusions || [];

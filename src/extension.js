@@ -6,16 +6,16 @@ function dispatchMessage(message, args) {
 
 function register(ruleset) {
   if (safari.extension.settings["rule." + ruleset.name]) {
-    ruleset.disabled = false;
+    ruleset.enabled = true;
   } else {
-    ruleset.disabled = true;
+    ruleset.enabled = false;
   }
   rulesets.push(ruleset);
 }
 
 function findRuleSet(hostname) {
   for (var i = 0; i < rulesets.length; i++) {
-    if (!rulesets[i].disabled && rulesets[i].isHandlerForHost(hostname)) {
+    if (rulesets[i].enabled && rulesets[i].isHandlerForHost(hostname)) {
       return rulesets[i];
     }
   }
@@ -28,7 +28,7 @@ function handleHttpLoad(event) {
       cookies = args.cookies,
       ruleset = findRuleSet(hostname);
       
-  if (ruleset && !ruleset.disabled && ruleset.isMatchRuleMatching(url) && !ruleset.isUrlExcluded(url)) {
+  if (ruleset && ruleset.enabled && ruleset.isMatchRuleMatching(url) && !ruleset.isUrlExcluded(url)) {
     ruleset.updateSecureCookies();
     var redirectUrl = ruleset.getRedirectUrl(url);
     if (redirectUrl) {
@@ -65,7 +65,7 @@ function handleSettingsChanged(event) {
     for (var i = 0; i < rulesets.length; i++) {
       var ruleset = rulesets[i];
       if (ruleset.name == rulesetName) {
-        ruleset.disabled = !event.newValue;
+        ruleset.enabled = event.newValue;
         return;
       }
     }

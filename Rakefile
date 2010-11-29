@@ -39,7 +39,7 @@ def parse_xml(xml)
   doc = REXML::Document.new(xml)
   ruleset = doc.root
   rs[:name] = ruleset.attributes['name']
-  rs[:disabled] = ruleset.attributes['default_off'] != nil
+  rs[:enabled] = ruleset.attributes['default_off'] == nil
   rs[:match_rule] = ruleset.attributes['match_rule']
   
   rs[:targets] = []
