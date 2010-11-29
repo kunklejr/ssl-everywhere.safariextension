@@ -1,6 +1,6 @@
-[Shepherd](https://www.nearinfinity.com/home/shepherd.html) is a [Safari web browser](https://extensions.apple.com/) extension that informs, and where possible, protects you from session [hijacking attacks](http://en.wikipedia.org/wiki/Session_hijacking) initiated with [Firesheep](http://codebutler.com/firesheep). 
+[SSL Everywhere](https://www.nearinfinity.com/home/ssl-everywhere.html) is a Safari web browser extension developed by [Near Infinity](https://www.nearinfinity.com) to force SSL encryption for many of today's popular websites. The extension leverages work done by the [Electronic Frontier Foundation's]() (EFF) [HTTPS Everywhere]() extension for Firefox.
 
-You can learn more about Shepherd and the websites it protects on the [Shepherd home page](https://www.nearinfinity.com/home/shepherd.html).
+You can learn more about SSL Everywhere on the [SSL Everywhere home page](https://www.nearinfinity.com/home/ssl-everywhere.html).
 
 Contributing
 ============
