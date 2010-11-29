@@ -12,7 +12,7 @@ task :clean do
 end
 
 desc "Transform HTTP Everywhere rules to SSL Everywhere rules"
-task :transform_rules => :clean do
+task :transform_rules do
   settings = []
   Dir.glob("rules/*.xml") do |filename|
     xml = File.read(filename)
@@ -39,7 +39,7 @@ task :generate_global_file => :transform_rules do
 end
 
 desc "Build everything necessary for the extension"
-task :build => [:transform_rules, :generate_global_file]
+task :build => [:transform_rules, :generate_global_file, :clean]
 
 def parse_rules_xml(xml)
   rs = {}
