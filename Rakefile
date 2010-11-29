@@ -5,12 +5,18 @@ require 'plist'
 
 task :default => :build
 
+desc "Delete all generated resources"
+task :clean do
+  File.delete(*Dir.glob("rules/*.js"))
+  File.delete("Settings.plist")
+end
+
 desc "Transform HTTP Everywhere rules to SSL Everywhere rules"
-task :transform_rules do
+task :transform_rules => :clean do
   settings = []
   Dir.glob("rules/*.xml") do |filename|
     xml = File.read(filename)
-    ruleset = parse_xml(xml)
+    ruleset = parse_rules_xml(xml)
     settings.push({ :name => ruleset[:name], :enabled => ruleset[:enabled] })
     js = convert_to_js(ruleset)
     js_filename = filename.gsub(/\.xml$/, ".js")
@@ -35,7 +41,7 @@ end
 desc "Build everything necessary for the extension"
 task :build => [:transform_rules, :generate_global_file]
 
-def parse_xml(xml)
+def parse_rules_xml(xml)
   rs = {}
   doc = REXML::Document.new(xml)
   ruleset = doc.root
