@@ -11,7 +11,6 @@ function fixElementReferences(elements) {
 function updateUrl(url) {
   if (url.type == "link") {
     var linkSelector = "a[href=" + url.from.replace(/([:\/\.\?\+=%&@])/g, "\\$1") + "]";
-    console.log(linkSelector);
     var links = document.querySelectorAll(linkSelector);
     for (var i = 0; i < links.length; i++) {
       links[i].href = url.to;

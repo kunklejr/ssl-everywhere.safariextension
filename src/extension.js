@@ -5,6 +5,11 @@ function dispatchMessage(message, args) {
 }
 
 function register(ruleset) {
+  if (safari.extension.settings["rule." + ruleset.name]) {
+    ruleset.disabled = false;
+  } else {
+    ruleset.disabled = true;
+  }
   rulesets.push(ruleset);
 }
 
@@ -54,4 +59,18 @@ function handleMessage(event) {
   }
 }
 
+function handleSettingsChanged(event) {
+  if (event.key.match(/^rule\./)) {
+    var rulesetName = event.key.slice(5);
+    for (var i = 0; i < rulesets.length; i++) {
+      var ruleset = rulesets[i];
+      if (ruleset.name == rulesetName) {
+        ruleset.disabled = !event.newValue;
+        return;
+      }
+    }
+  }
+}
+
 safari.application.addEventListener("message", handleMessage, false);
+safari.extension.settings.addEventListener("change", handleSettingsChanged, false);

@@ -6,14 +6,20 @@ task :default => :build
 
 desc "Transform HTTP Everywhere rules to SSL Everywhere rules"
 task :transform_rules do
+  settings = []
   Dir.glob("rules/*.xml") do |filename|
-    xml = File.read(filename);
+    xml = File.read(filename)
     ruleset = parse_xml(xml)
+    settings.push({ :name => ruleset[:name], :enabled => !ruleset[:disabled] })
     js = convert_to_js(ruleset)
     js_filename = filename.gsub(/\.xml$/, ".js")
     puts "Transforming #{filename} into #{js_filename}"
     File.open(js_filename, 'w') { |f| f.write(js) }
   end
+  
+  plist = generate_settings_plist(settings)
+  puts "Writing Settings.plist"
+  File.open("Settings.plist", 'w') { |f| f.write(plist) }
 end
 
 desc "Generate extension global file"
@@ -76,4 +82,37 @@ def generate_global_file(js_filenames)
 <!DOCTYPE HTML>
 #{scripts}
   HTML
+end
+
+def generate_settings_plist(rules)
+  plist = <<-PLIST
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    <plist version="1.0">
+    <array>
+    <dict>
+  		<key>Title</key>
+  		<string>Rules</string>
+  		<key>Type</key>
+  		<string>Group</string>
+  	</dict>
+  PLIST
+  
+  rules.each do |rule|
+    plist.concat(<<-DICT
+      <dict>
+    		<key>DefaultValue</key>
+    		#{rule[:enabled] ? "<true/>" : "<false/>"}
+    		<key>Key</key>
+    		<string>rule.#{rule[:name]}</string>
+    		<key>Title</key>
+    		<string>#{rule[:name]}</string>
+    		<key>Type</key>
+    		<string>CheckBox</string>
+    	</dict>
+    DICT
+    )
+  end
+  	
+  plist.concat("</array></plist>")
 end
