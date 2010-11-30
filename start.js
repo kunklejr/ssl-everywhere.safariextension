@@ -1,16 +1,8 @@
-function handleLoadStartEvent(event) {
-  document.removeEventListener("load", handleLoadStartEvent, true);
-  safari.self.tab.dispatchMessage("http.load", { location: document.location, cookies: document.cookie });
-}
-
-function handleMessageEvent(event) {
-  if (event.name == "https.redirect") {
-    document.location = event.message;
+if (document.location.protocol == "http:") {
+  var httpLoad = document.createEvent("Event");
+  httpLoad.initEvent("canLoad", true, true)
+  var redirectTo = safari.self.tab.canLoad(httpLoad, { location: document.location, cookies: document.cookie });
+  if (redirectTo) {
+    document.location = redirectTo;
   }
-}
-
-if (window.top == window // prevents SSL Everywhere from running in iframes too
-    && document.location.protocol == "http:") { 
-  document.addEventListener("load", handleLoadStartEvent, true);
-  safari.self.addEventListener("message", handleMessageEvent, false);  
 }

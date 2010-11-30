@@ -30,10 +30,7 @@ function handleHttpLoad(event) {
       
   if (ruleset && ruleset.enabled && ruleset.isMatchRuleMatching(url) && !ruleset.isUrlExcluded(url)) {
     ruleset.updateSecureCookies();
-    var redirectUrl = ruleset.getRedirectUrl(url);
-    if (redirectUrl) {
-      dispatchMessage("https.redirect", redirectUrl);
-    }
+    return ruleset.getRedirectUrl(url);
   }
 }
 
@@ -52,8 +49,9 @@ function handleHttpUrl(args) {
 }
 
 function handleMessage(event) {
-  if (event.name == "http.load") {
-    handleHttpLoad(event);
+  if (event.name == "canLoad") {
+    var redirectUrl = handleHttpLoad(event);
+    event.message = redirectUrl;
   } else if (event.name == "http.url") {
     handleHttpUrl(event.message);
   }
