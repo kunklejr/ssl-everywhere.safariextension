@@ -39,7 +39,7 @@ task :generate_global_file => :transform_rules do
 end
 
 desc "Build everything necessary for the extension"
-task :build => [:transform_rules, :generate_global_file, :clean]
+task :build => [:clean, :transform_rules, :generate_global_file]
 
 def parse_rules_xml(xml)
   rs = {}
