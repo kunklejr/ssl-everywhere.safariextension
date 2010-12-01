@@ -21,11 +21,8 @@ function findRuleSet(hostname) {
   }
 }
 
-function handleHttpLoad(event) {
-  var args = event.message,
-      hostname = args.location.hostname,
-      url = args.location.href,
-      cookies = args.cookies,
+function handleHttpLoad(url) {
+  var hostname = url.match(/https?\:\/\/([^\/$\?#]+)/)[1],
       ruleset = findRuleSet(hostname);
       
   if (ruleset && ruleset.enabled && ruleset.isMatchRuleMatching(url) && !ruleset.isUrlExcluded(url)) {
@@ -50,7 +47,7 @@ function handleHttpUrl(args) {
 
 function handleMessage(event) {
   if (event.name == "canLoad") {
-    var redirectUrl = handleHttpLoad(event);
+    var redirectUrl = handleHttpLoad(event.message);
     event.message = redirectUrl;
   } else if (event.name == "http.url") {
     handleHttpUrl(event.message);
