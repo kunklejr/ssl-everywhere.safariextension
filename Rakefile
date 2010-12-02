@@ -8,7 +8,7 @@ task :default => :build
 desc "Delete all generated resources"
 task :clean do
   File.delete(*Dir.glob("rules/*.js"))
-  File.delete("Settings.plist")
+  File.delete("Settings.plist") if File.exists?("Settings.plist")
 end
 
 desc "Transform HTTP Everywhere rules to SSL Everywhere rules"
@@ -66,7 +66,7 @@ def parse_rules_xml(xml)
   
   rs[:rules] = []
   ruleset.elements.each('rule') do |rule|
-    rs[:rules].push({:from => rule.attributes['from'], :to => rule.attributes['to']})
+    rs[:rules].push({:from => rule.attributes['from'].sub(/\/$/, ''), :to => rule.attributes['to'].sub(/\/$/, '')})
   end
   
   rs

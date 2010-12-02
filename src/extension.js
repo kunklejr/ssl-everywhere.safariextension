@@ -1,9 +1,5 @@
 var rulesets = [];
 
-function dispatchMessage(message, args) {
-  safari.application.activeBrowserWindow.activeTab.page.dispatchMessage(message, args);
-}
-
 function register(ruleset) {
   if (safari.extension.settings["rule." + ruleset.name]) {
     ruleset.enabled = true;
@@ -21,7 +17,7 @@ function findRuleSet(hostname) {
   }
 }
 
-function handleHttpLoad(url) {
+function checkForRedirectUrl(url) {
   var hostname = url.match(/https?\:\/\/([^\/$\?#]+)/)[1],
       ruleset = findRuleSet(hostname);
       
@@ -31,26 +27,9 @@ function handleHttpLoad(url) {
   }
 }
 
-function handleHttpUrl(args) {
-  var match = args.url.match(/https?\:\/\/([^\/$\?#]+)/)
-  if (match && match.length > 1) {
-    var hostname = match[1];
-    var ruleset = findRuleSet(hostname);
-    if (ruleset) {
-      var redirectUrl = ruleset.getRedirectUrl(args.url);
-      if (redirectUrl) {
-        dispatchMessage("https.rewrite", { type: args.type, from: args.url, to: redirectUrl });
-      }
-    }
-  }
-}
-
 function handleMessage(event) {
   if (event.name == "canLoad") {
-    var redirectUrl = handleHttpLoad(event.message);
-    event.message = redirectUrl;
-  } else if (event.name == "http.url") {
-    handleHttpUrl(event.message);
+    event.message = checkForRedirectUrl(event.message);
   }
 }
 
