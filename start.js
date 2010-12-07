@@ -1,3 +1,7 @@
+/**
+ * Immediately flip the user to SSL if we have an applicable rule set
+ * and a https: version of the URL.
+ */
 if (document.location.protocol == "http:") {
   var httpLoad = document.createEvent("Event");
   httpLoad.initEvent("load", true, true)
