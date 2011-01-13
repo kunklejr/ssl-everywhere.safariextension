@@ -2,6 +2,24 @@
 
 You can learn more about SSL Everywhere on the [SSL Everywhere home page](https://www.nearinfinity.com/home/opensource/ssl-everywhere.html).
 
+Building
+========
+Follow these steps to build the extension and try it on your own computer.
+
+The rule files borrowed from HTTPS Everywhere are included as XML files. However, to use them with SSL Everywhere they first need to be converted to JavaScript. The project includes a Rakefile with tasks for building all the files needed for the Safari extension. If you don't have Ruby installed, please see the [download and installation instructions](http://www.ruby-lang.org/en/downloads/) from the Ruby language web site.
+
+Once you have Ruby setup, you'll need to install a few gems
+
+  gem install rake  # Note: this is likely already installed
+  gem install json
+  gem install plist
+
+After successfully installing those gems, you can generate the JavaScript rule files and several other files simply by running the following command from the root of the project
+
+  rake build
+
+Once you've completed these steps you can install the extension as described in the [Safari Extension Development Guide](http://developer.apple.com/library/safari/#documentation/Tools/Conceptual/SafariExtensionGuide/Introduction/Introduction.html).
+
 Contributing
 ============
 
