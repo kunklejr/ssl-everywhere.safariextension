@@ -10,13 +10,13 @@ The rule files borrowed from HTTPS Everywhere are included as XML files. However
 
 Once you have Ruby setup, you'll need to install a few gems
 
-  gem install rake  # Note: this is likely already installed
-  gem install json
-  gem install plist
+    gem install rake  # Note: this is likely already installed
+    gem install json
+    gem install plist
 
 After successfully installing those gems, you can generate the JavaScript rule files and several other files simply by running the following command from the root of the project
 
-  rake build
+    rake build
 
 Once you've completed these steps you can install the extension as described in the [Safari Extension Development Guide](http://developer.apple.com/library/safari/#documentation/Tools/Conceptual/SafariExtensionGuide/Introduction/Introduction.html).
 
