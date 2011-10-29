@@ -9,7 +9,7 @@ function RuleSet(config) {
   this.enabled = config.enabled;
   this.matchRule = config.match_rule;
   this.targets = config.targets || [];
-  this.exclusions = config.exlusions || [];
+  this.exclusions = config.exclusions || [];
   this.secureCookies = config.secure_cookies || [];
   this.rules = config.rules || [];
   
@@ -103,7 +103,7 @@ RuleSet.prototype = {
     if (!this.exclusionPatterns) {
       this.exclusionPatterns = [];
       for (var i = 0; i < this.exclusions.length; i++) {
-        this.exclusionPatterns.push(new RegExp(this.exlusions[i]));
+        this.exclusionPatterns.push(new RegExp(this.exclusions[i]));
       }
     }
   },
