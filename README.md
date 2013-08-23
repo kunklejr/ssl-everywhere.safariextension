@@ -1,3 +1,9 @@
+Warning
+=======
+This project is no longer actively maintained and may or may not work any longer. Is is retained for historical purposes only.
+
+Overview
+========
 [SSL Everywhere](https://www.nearinfinity.com/home/ssl-everywhere.html) is a Safari web browser extension developed by [Near Infinity](https://www.nearinfinity.com) to force SSL encryption for many of today's popular websites. The extension leverages work done by the [Electronic Frontier Foundation's]() (EFF) [HTTPS Everywhere]() extension for Firefox.
 
 You can learn more about SSL Everywhere on the [SSL Everywhere home page](https://www.nearinfinity.com/home/opensource/ssl-everywhere.html).
